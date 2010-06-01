@@ -1,8 +1,8 @@
 package net.abhinavsarkar.nulllessj;
 
-import static net.abhinavsarkar.nulllessj.Just.just;
-
 import java.util.concurrent.Callable;
+
+import static net.abhinavsarkar.nulllessj.Just.just;
 
 /**
  * A container class for representing a value which 'maybe' present.
@@ -130,7 +130,8 @@ public abstract class Maybe<T> {
      * 
      * @see    Maybe#maybe
      */
-    public <V> Maybe<V> callIfSomething(final ContextualCallable<T,V> callable) {
+    public <V> Maybe<V> callIfSomething(
+            final ContextualCallable<? super T,V> callable) {
         if (isSomething()) {
             callable.setContext(get());
             try {
@@ -190,7 +191,8 @@ public abstract class Maybe<T> {
      * 
      * @throws RuntimeException See the description.
      */
-    public void runIfSomething(final ContextualRunnable<T> runnable) {
+    public void runIfSomething(
+            final ContextualRunnable<? super T> runnable) {
         if (isSomething()) {
             runnable.setContext(get());
             try {

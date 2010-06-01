@@ -58,7 +58,7 @@ public final class Just<T> extends Maybe<T> {
 
     @Override
     public String toString() {
-        return value.toString();
+        return "Just(" + value.toString() + ")";
     }
     
 }
